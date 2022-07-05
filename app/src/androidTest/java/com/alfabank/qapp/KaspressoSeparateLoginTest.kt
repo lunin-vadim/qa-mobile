@@ -138,6 +138,32 @@ class KaspressoSeparateLoginTest : TestCase() {
                     }
                 }
             }
+            step("Success screen test") {
+                SuccessScreen.tvTitle.isVisible()
+            }
+        }
+    }
+
+    @Test
+    fun wrongSymbols() {
+        run {
+            step("Wrong login symbols test") {
+                LoginScreen {
+                    val login = "Login+!&*?()-"
+                    val regex = "[^A-z.,'_\\s-]".toRegex()
+                    val matched = regex.containsMatchIn(login)
+                    etLogin {
+                        typeText(login)
+                        device.screenshots.take("Additional_screenshot")
+                    }
+                    testLogger.i(matched.toString())
+                    if (matched) {
+                        tvError {
+                            hasAnyText()
+                        }
+                    }
+                }
+            }
         }
     }
 }
