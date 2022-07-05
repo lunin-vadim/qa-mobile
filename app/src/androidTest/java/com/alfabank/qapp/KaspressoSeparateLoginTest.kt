@@ -28,6 +28,48 @@ class KaspressoSeparateLoginTest : TestCase() {
     @get:Rule
     val activityRule = activityScenarioRule<MainActivity>()
 
+    @Test
+    fun visibleTest() {
+        run {
+            step("Title and fields test") {
+                LoginScreen {
+                    tvTitle {
+                        isVisible()
+                        hasText("Вход в Alfa-Test")
+                    }
+                }
+            }
+            step("Btn test") {
+                LoginScreen {
+                    btnConfirm {
+                        isVisible()
+                        isClickable()
+                    }
+                }
+            }
+            step("Login field test") {
+                LoginScreen {
+                    etLogin {
+                        isVisible()
+                        hasEmptyText()
+                        typeText("wrongLogin")
+                        clearText()
+                    }
+                }
+            }
+            step("Pass field test") {
+                LoginScreen {
+                    etPass {
+                        isVisible()
+                        hasEmptyText()
+                        typeText("wrongPass")
+                        clearText()
+                    }
+                }
+            }
+        }
+    }
+
         @Test
     fun emptyTest() {
         run {
