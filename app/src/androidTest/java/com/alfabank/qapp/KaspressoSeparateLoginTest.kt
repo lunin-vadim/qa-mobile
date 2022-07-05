@@ -208,4 +208,70 @@ class KaspressoSeparateLoginTest : TestCase() {
             }
         }
     }
+
+    @Test
+    fun loginLength() {
+        run {
+            step("Login length > 50") {
+                LoginScreen {
+                    val login = "aaaaaaaaaa" +
+                            "bbbbbbbbbb" +
+                            "cccccccccc" +
+                            "dddddddddd" +
+                            "eeeeeeeeee" +
+                            "ff"
+                    testLogger.i("Entered login is $login, length is ${login.length}")
+                    etLogin {
+                        typeText(login)
+                    }
+                    val readLogin = etLogin.getText()
+                    testLogger.i("Entered login is $readLogin, length is ${login.length}")
+                    assert(login.length > 50)
+                    assert(readLogin.length <= 50)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun passLength() {
+        run {
+            step("Password length > 50") {
+                LoginScreen {
+                    val pass = "aaaaaaaaaa" +
+                            "bbbbbbbbbb" +
+                            "cccccccccc" +
+                            "dddddddddd" +
+                            "eeeeeeeeee" +
+                            "ff"
+                    testLogger.i("Entered login is $pass, length is ${pass.length}")
+                    etPass {
+                        typeText(pass)
+                    }
+                    val readPass = etPass.getText()
+                    testLogger.i("Entered login is $readPass, length is ${pass.length}")
+                    assert(pass.length > 50)
+                    assert(readPass.length <= 50)
+                }
+            }
+        }
+    }
+
+    fun EditableActions.getText(): String {
+        var text = ""
+
+        view.perform(object : ViewAction {
+            override fun getConstraints() = isAssignableFrom(EditText::class.java)
+
+            override fun perform(uiController: UiController?, view: View?) {
+                val edit = view as? EditText
+                text = edit?.text.toString() ?: ""
+            }
+
+            override fun getDescription() = "getting text from a EditText"
+        })
+
+        return text
+    }
+
 }
