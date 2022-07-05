@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.EditText
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
+import androidx.test.espresso.action.GeneralLocation
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.ext.junit.rules.activityScenarioRule
@@ -63,8 +64,14 @@ class KaspressoSeparateLoginTest : TestCase() {
                         isVisible()
                         hasEmptyText()
                         typeText("wrongPass")
-                        clearText()
+//                        clearText()
                     }
+                    eye.isVisible()
+                    device.screenshots.take("Hidden pass")
+                    eye.click(GeneralLocation.CENTER_RIGHT)
+                    device.screenshots.take("Visible pass")
+                    eye.click(GeneralLocation.CENTER_RIGHT)
+                    etPass.clearText()
                 }
             }
         }

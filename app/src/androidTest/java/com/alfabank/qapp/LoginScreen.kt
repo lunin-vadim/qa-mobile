@@ -17,4 +17,5 @@ object LoginScreen : KScreen<LoginScreen>(){
     val btnConfirm = KButton{withId(R.id.btnConfirm)}
     val tvError = KTextView{withId(R.id.tvError)}
     val stBar = KView{withId(R.id.loader)}
+    val eye = KView{withId(R.id.tilPassword)}
 }
