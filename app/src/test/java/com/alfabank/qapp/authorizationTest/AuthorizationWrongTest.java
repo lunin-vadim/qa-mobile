@@ -58,7 +58,7 @@ class AuthorizationWrongTest extends BaseAuth{
         authorizationPage.setLogin(CORRECT_LOGIN);
         authorizationPage.setPassword(LONG_WRONG_PASSWORD);
         authorizationPage.clickButtonEnter;
-        assertTrue(authorizationPage.isPasswordAllertVisible()); // Здесь будет подразумавается проверка на ExceptValue.
+        assertTrue(authorizationPage.isPasswordAllertVisible()); // Здесь подразумавается проверка на ExceptValue.
     }
 
     @Test
@@ -70,5 +70,5 @@ class AuthorizationWrongTest extends BaseAuth{
         authorizationPage.setLogin(CORRECT_LOGIN);
         authorizationPage.setPassword(WRONG_SYMBOL_PASSWORD);
         authorizationPage.clickButtonEnter;
-        assertTrue(authorizationPage.isPasswordAllertVisible()); // Здесь будет подразумавается проверка на InvalidValue.
+        assertTrue(authorizationPage.isPasswordAllertVisible()); // Здесь подразумавается проверка на InvalidValue.
 }
